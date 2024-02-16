@@ -1,0 +1,14 @@
+kind: template
+load: ds-generic-v2.star
+data:
+
+  multiarch_build:
+    - name: kubedoom
+      settings:
+        DOCKERFILE: ./Dockerfile
+        CONTEXT: ./
+        BUILD_ARGS:
+          TARGETARCH: ${DRONE_STAGE_ARCH}
+        IGNORE_PATHS:
+          - "/etc/ssl/certs/"
+        TRIVY_SCAN: false
