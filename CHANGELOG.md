@@ -1,3 +1,10 @@
+## 1.0.0 (2/16/2024)
+
+
+### Bug Fixes
+
+* upgrade dockerfile and add -shared flag ([284a6f5](https://github.com/ds-onyx-shark/kubedoom/commit/284a6f53efd9d0372ae49a7c617f4e210ec5fd7b))
+
 # 0.6.0
 * New image ghcr.io/storax/kubedoom:0.6.0
 * Latest image available as ghcr.io/storax/kubedoom:latest.
