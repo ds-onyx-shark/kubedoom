@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ds-onyx-shark/kubedoom/compare/1.0.0...1.0.1) (2/19/2024)
+
+
+### Bug Fixes
+
+* small changes + move mobs to second room ([04908c5](https://github.com/ds-onyx-shark/kubedoom/commit/04908c5aef6549a1a11e4bdaeebb5cb30ea50a32))
+
 ## 1.0.0 (2/16/2024)
 
 
