@@ -61,6 +61,28 @@ type Mode interface {
 	deleteEntity(string)
 }
 
+type custompodmode struct {
+}
+
+func (m custompodmode) getEntities() []string {
+	var args []string
+	fselector, exists := os.LookupEnv("KUBECTL_POD_FIELD_SELECTOR")
+	if exists {
+		args = []string{"kubectl", "get", "pods", "-A", "-o", "go-template", "--template={{range .items}}{{.metadata.namespace}}/{{.metadata.name}} {{end}}", "--field-selector", fselector}
+	}
+	output := outputCmd(args)
+	outputstr := strings.TrimSpace(output)
+	pods := strings.Split(outputstr, " ")
+	return pods
+}
+
+func (m custompodmode) deleteEntity(entity string) {
+	log.Printf("Pod to kill: %v", entity)
+	podparts := strings.Split(entity, "/")
+	cmd := exec.Command("/usr/bin/kubectl", "delete", "pod", "-n", podparts[0], podparts[1])
+	go cmd.Run()
+}
+
 type podmode struct {
 }
 
@@ -158,6 +180,8 @@ func main() {
 		mode = podmode{}
 	case "namespaces":
 		mode = nsmode{}
+	case "custompods":
+		mode = custompodmode{}
 	default:
 		log.Fatalf("Mode should be pods or namespaces")
 	}

@@ -515,15 +515,21 @@ mobj_t *add_new_process(int pid, const char *pname, int demon) {
           break;
 
           default:  // shareware, registered, and retail (Doom 1)
-             /* place the guys in the hidden courtyard on E1M1 */
+             /* place the guys in the hidden courtyard on E1M1
              mt_ext.x = 1800 + (pid%16)*40;
              mt_ext.y =   -3600 + (pid%10)*40;
              mt_ext.angle = 0;
+            */
 
-             /* place the guys near the player start point
+             /* place the guys near the player start point 
              mt_ext.x = 1070 + (pid%8)*30; //  + (pid%5)*40;// + i*40;
              mt_ext.y =   -3500 + (pid%2)*30;; // + (pid/5)*40; //  + (pid&4)*40; //  + j*40;
              */
+
+             /* place the guys in second room in E1M1*/
+             mt_ext.x = 1800 + (pid%8)*30; //  + (pid%5)*40;// + i*40;
+             mt_ext.y = -2500 + (pid%2)*30;; // + (pid/5)*40; //  + (pid&4)*40; //  + j*40;
+             
           break;
        }  // end switch (gamemode)
     } // end else (custom level not loaded)
